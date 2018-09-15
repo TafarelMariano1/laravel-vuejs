@@ -2,6 +2,23 @@
 
 Design created to test Laravel with VueJS.
 
+* Laravel 5.5
+* VueJS
+
+## Commands Laravel
+
+Create auth Laravel
+
+```unix
+php artisan make:auth
+```
+
+Migrate tables
+
+```unix
+php artisan migrate
+```
+
 ## Author
 
 | ![Jonatan Lima](https://avatars3.githubusercontent.com/u/9246888?s=400&u=811a19c46d1db0eb97b3167f607e4cbbd0a488ca&v=4&s=)|
