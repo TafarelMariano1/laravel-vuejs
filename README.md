@@ -3,7 +3,7 @@
 Design created to test Laravel with VueJS.
 
 * Laravel 5.5
-* VueJS
+* VueJS 2
 
 ## Commands Laravel
 
