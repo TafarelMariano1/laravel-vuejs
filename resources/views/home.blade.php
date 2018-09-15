@@ -3,6 +3,7 @@
 @section('content')
     <page size="10">
         <panel title="Dashboard">
+            <bread-crumbs v-bind:list="{{ $listCrumbs }}"></bread-crumbs>
             <div class="row">
                 <div class="col-md-4">
                     <box 
