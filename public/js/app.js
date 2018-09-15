@@ -44189,9 +44189,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['titles', 'itens']
+    props: ['titles', 'itens', 'view', 'create', 'edit', 'dell', 'token'],
+    data: function data() {
+        return {
+            search: ''
+        };
+    },
+    methods: {
+        executeForm: function executeForm(index) {
+            document.getElementById(index).submit();
+        }
+    },
+    computed: {
+        list: function list() {
+            var _this = this;
+
+            return this.itens.filter(function (res) {
+                var k = 0;
+                for (k; k < res.length; k++) {
+                    if ((res[k] + "").toLowerCase().indexOf(_this.search.toLowerCase()) >= 0) return true;
+                }
+                return false;
+            });
+
+            return this.itens;
+        }
+    }
 });
 
 /***/ }),
@@ -44203,21 +44249,56 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("a", { attrs: { href: "#" } }, [_vm._v("Create")]),
+    _c("div", { staticClass: "form-inline" }, [
+      _vm.create
+        ? _c("a", { attrs: { href: _vm.create } }, [_vm._v("Create")])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group pull-right" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.search,
+              expression: "search"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "search", placeholder: "Search" },
+          domProps: { value: _vm.search },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.search = $event.target.value
+            }
+          }
+        })
+      ])
+    ]),
     _vm._v(" "),
     _c("table", { staticClass: "table table-striped table-hover" }, [
       _c("thead", [
         _c(
           "tr",
-          _vm._l(_vm.titles, function(title) {
-            return _c("th", [_vm._v(_vm._s(title))])
-          })
+          [
+            _vm._l(_vm.titles, function(title) {
+              return _c("th", [_vm._v(_vm._s(title))])
+            }),
+            _vm._v(" "),
+            _vm.view || _vm.edit || _vm.dell
+              ? _c("th", [_vm._v("Action")])
+              : _vm._e()
+          ],
+          2
         )
       ]),
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.itens, function(item) {
+        _vm._l(_vm.list, function(item, index) {
           return _c(
             "tr",
             [
@@ -44225,7 +44306,89 @@ var render = function() {
                 return _c("td", [_vm._v(_vm._s(i))])
               }),
               _vm._v(" "),
-              _vm._m(0, true)
+              _vm.view || _vm.edit || _vm.dell
+                ? _c("td", [
+                    _vm.dell && _vm.token
+                      ? _c("form", { attrs: { id: index, action: _vm.dell } }, [
+                          _c("input", {
+                            attrs: {
+                              type: "hidden",
+                              name: "_method",
+                              value: "DELETE"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "hidden", name: "_token" },
+                            domProps: { value: _vm.token }
+                          }),
+                          _vm._v(" "),
+                          _vm.view
+                            ? _c("a", { attrs: { href: _vm.view } }, [
+                                _vm._v("View |")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.edit
+                            ? _c("a", { attrs: { href: _vm.edit } }, [
+                                _vm._v("Edit |")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  _vm.executeForm(index)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.token
+                      ? _c("span", [
+                          _vm.view
+                            ? _c("a", { attrs: { href: _vm.view } }, [
+                                _vm._v("View |")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.edit
+                            ? _c("a", { attrs: { href: _vm.edit } }, [
+                                _vm._v("Edit |")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.dell
+                            ? _c("a", { attrs: { href: _vm.dell } }, [
+                                _vm._v("Delete")
+                              ])
+                            : _vm._e()
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.token && !_vm.dell
+                      ? _c("span", [
+                          _vm.view
+                            ? _c("a", { attrs: { href: _vm.view } }, [
+                                _vm._v("View |")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.edit
+                            ? _c("a", { attrs: { href: _vm.edit } }, [
+                                _vm._v("Edit")
+                              ])
+                            : _vm._e()
+                        ])
+                      : _vm._e()
+                  ])
+                : _vm._e()
             ],
             2
           )
@@ -44234,20 +44397,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("View")]),
-      _vm._v(" |\n                    "),
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Edit")]),
-      _vm._v(" |\n                    "),
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Delete")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
