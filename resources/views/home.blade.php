@@ -5,23 +5,36 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <panel title="Dashboard">
-                    Test content...
-
                     <div class="row">
                         <div class="col-md-4">
-                            <panel title="Content 1" color="panel-red-clean">
-                                Test content...
-                            </panel>
+                            <box 
+                                quantify="80"
+                                title="Articles"
+                                url="#" 
+                                color="#FF9D97"
+                                icon="ion ion-pie-graph"
+                            >
+                            </box>
                         </div>
                         <div class="col-md-4">
-                            <panel title="Content 1" color="panel-yellow-clean">
-                                Test content...
-                            </panel>
+                            <box 
+                                quantify="2000"
+                                title="Users"
+                                url="#" 
+                                color="#FFD38E"
+                                icon="ion ion-person-stalker"
+                            >
+                            </box>
                         </div>
                         <div class="col-md-4">
-                            <panel title="Content 1" color="panel-green-clean">
-                                Test content...
-                            </panel>
+                            <box 
+                                quantify="150"
+                                title="Authors"
+                                url="#" 
+                                color="#9ECCB1"
+                                icon="ion ion-person"
+                            >
+                            </box>
                         </div>
                     </div>
                 </panel>

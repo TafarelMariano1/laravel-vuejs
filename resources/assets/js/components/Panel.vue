@@ -19,27 +19,25 @@
     }
 </script>
 
-<style>
+<style media="screen">
     .panel-red-clean, .panel-yellow-clean, .panel-green-clean {
         border-color: #889BB2;
         box-shadow: 2px 2px #dad9d9;
     }
 
-    .panel-red-clean > .panel-heading {
-        color: #ffffff;
-        background-color: #FF9D97;
+    .panel-heading {
         border-color: #889BB2;
     }
 
+    .panel-red-clean > .panel-heading {
+        background-color: #FF9D97;
+    }
+    
     .panel-yellow-clean > .panel-heading {
-        color: #ffffff;
         background-color: #FFD38E;
-        border-color: #889BB2;
     }
 
     .panel-green-clean > .panel-heading {
-        color: #ffffff;
         background-color: #9ECCB1;
-        border-color: #889BB2;
     }
 </style>
