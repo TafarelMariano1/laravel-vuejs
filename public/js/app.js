@@ -44212,20 +44212,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['titles', 'itens', 'view', 'create', 'edit', 'dell', 'token'],
+    props: ['titles', 'itens', 'order', 'orderCol', 'view', 'create', 'edit', 'dell', 'token'],
     data: function data() {
         return {
-            search: ''
+            search: '',
+            orderAux: this.order || "asc",
+            orderAuxCol: this.orderCol || 0
         };
     },
     methods: {
         executeForm: function executeForm(index) {
             document.getElementById(index).submit();
+        },
+        orderColumn: function orderColumn(column) {
+            this.orderAuxCol = column;
+
+            if (this.orderAux.toLowerCase() == "asc") {
+                this.orderAux = 'desc';
+            } else {
+                this.orderAux = 'asc';
+            }
         }
     },
     computed: {
         list: function list() {
             var _this = this;
+
+            var order = this.orderAux;
+            var orderCol = this.orderAuxCol;
+
+            order = order.toLowerCase();
+            orderCol = parseInt(orderCol);
+
+            if (order == 'asc') {
+                this.itens.sort(function (a, b) {
+                    if (a[orderCol] > b[orderCol]) return 1;
+                    if (a[orderCol] < b[orderCol]) return -1;
+                    return 0;
+                });
+            } else {
+                this.itens.sort(function (a, b) {
+                    if (a[orderCol] < b[orderCol]) return 1;
+                    if (a[orderCol] > b[orderCol]) return -1;
+                    return 0;
+                });
+            }
 
             return this.itens.filter(function (res) {
                 var k = 0;
@@ -44284,8 +44315,19 @@ var render = function() {
         _c(
           "tr",
           [
-            _vm._l(_vm.titles, function(title) {
-              return _c("th", [_vm._v(_vm._s(title))])
+            _vm._l(_vm.titles, function(title, index) {
+              return _c(
+                "th",
+                {
+                  staticStyle: { cursor: "pointer" },
+                  on: {
+                    click: function($event) {
+                      _vm.orderColumn(index)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(title))]
+              )
             }),
             _vm._v(" "),
             _vm.view || _vm.edit || _vm.dell

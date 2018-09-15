@@ -9,7 +9,7 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th v-for="title in titles">{{ title }}</th>
+                    <th style="cursor:pointer" v-on:click="orderColumn(index)" v-for="(title, index) in titles">{{ title }}</th>
                     <th v-if="view || edit || dell">Action</th>
                 </tr>
             </thead>
@@ -47,6 +47,8 @@
         props: [
             'titles',
             'itens',
+            'order',
+            'orderCol',
             'view',
             'create',
             'edit',
@@ -55,16 +57,47 @@
         ],
         data: function() {
             return {
-                search: ''
+                search: '',
+                orderAux: this.order || "asc",
+                orderAuxCol: this.orderCol || 0
             }
         },
         methods: {
             executeForm: function(index) {
                 document.getElementById(index).submit();
+            },
+            orderColumn: function(column) {
+                this.orderAuxCol = column;
+
+                if (this.orderAux.toLowerCase() == "asc") {
+                    this.orderAux = 'desc';
+                } else {
+                    this.orderAux = 'asc';
+                }
             }
         },
         computed: {
             list: function() {
+                let order = this.orderAux;
+                let orderCol = this.orderAuxCol;
+
+                order = order.toLowerCase();
+                orderCol = parseInt(orderCol);
+
+                if (order == 'asc') {
+                    this.itens.sort(function(a, b) {
+                        if (a[orderCol] > b[orderCol]) return 1;
+                        if (a[orderCol] < b[orderCol]) return -1;
+                        return 0;
+                    });
+                } else {
+                    this.itens.sort(function(a, b) {
+                        if (a[orderCol] < b[orderCol]) return 1;
+                        if (a[orderCol] > b[orderCol]) return -1;
+                        return 0;
+                    });
+                }               
+
                 return this.itens.filter(res => {
                     let k = 0;
                     for(k; k < res.length; k++) {
