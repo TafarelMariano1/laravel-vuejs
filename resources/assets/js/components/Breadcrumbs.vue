@@ -8,6 +8,7 @@
 </template>
 
 <script>
+    var l = 0;
     export default {
         props: ['list'],
         computed: {

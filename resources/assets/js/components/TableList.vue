@@ -1,7 +1,6 @@
 <template>
     <div>
-        <div class="form-inline">
-            <a v-if="create" v-bind:href="create">Create</a>
+        <div class="form-inline">            
             <div class="form-group pull-right">
                 <input type="search" class="form-control" placeholder="Search" v-model="search">
             </div>  

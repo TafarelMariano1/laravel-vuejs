@@ -10,7 +10,7 @@
 
 <script>
     export default {
-        props: ['title', 'color'],
+        props: ['title', 'color',],
         computed: {
             defineColor: function() {
                 return `panel ${this.color} || panel-default`;
