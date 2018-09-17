@@ -44277,6 +44277,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['titles', 'itens', 'order', 'orderCol', 'view', 'create', 'edit', 'dell', 'token', 'modal'],
@@ -44327,6 +44328,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.search) {
                 return this.itens.filter(function (res) {
+                    res = Object.values(res);
                     var k = 0;
                     for (k; k < res.length; k++) {
                         if ((res[k] + "").toLowerCase().indexOf(_this.search.toLowerCase()) >= 0) return true;
@@ -44395,215 +44397,217 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("table", { staticClass: "table table-striped table-hover" }, [
-      _c("thead", [
-        _c(
-          "tr",
-          [
-            _vm._l(_vm.titles, function(title, index) {
-              return _c(
-                "th",
-                {
-                  staticStyle: { cursor: "pointer" },
-                  on: {
-                    click: function($event) {
-                      _vm.orderColumn(index)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(title))]
-              )
-            }),
-            _vm._v(" "),
-            _vm.view || _vm.edit || _vm.dell
-              ? _c("th", [_vm._v("Action")])
-              : _vm._e()
-          ],
-          2
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.list, function(item, index) {
-          return _c(
+    _c("div", { staticClass: "table-responsive" }, [
+      _c("table", { staticClass: "table table-striped table-hover" }, [
+        _c("thead", [
+          _c(
             "tr",
             [
-              _vm._l(item, function(i) {
-                return _c("td", [_vm._v(_vm._s(i))])
+              _vm._l(_vm.titles, function(title, index) {
+                return _c(
+                  "th",
+                  {
+                    staticStyle: { cursor: "pointer" },
+                    on: {
+                      click: function($event) {
+                        _vm.orderColumn(index)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(title))]
+                )
               }),
               _vm._v(" "),
               _vm.view || _vm.edit || _vm.dell
-                ? _c("td", [
-                    _vm.dell && _vm.token
-                      ? _c(
-                          "form",
-                          { attrs: { id: index, action: _vm.dell } },
-                          [
-                            _c("input", {
-                              attrs: {
-                                type: "hidden",
-                                name: "_method",
-                                value: "DELETE"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              attrs: { type: "hidden", name: "_token" },
-                              domProps: { value: _vm.token }
-                            }),
-                            _vm._v(" "),
-                            _vm.view && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.view } }, [
-                                  _vm._v("View |")
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.view && _vm.modal
-                              ? _c("modal-link", {
-                                  attrs: {
-                                    item: item,
-                                    type: "link",
-                                    css: "",
-                                    name: "view",
-                                    title: "View |"
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.edit && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.edit } }, [
-                                  _vm._v("Edit |")
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.edit && _vm.modal
-                              ? _c("modal-link", {
-                                  attrs: {
-                                    item: item,
-                                    type: "link",
-                                    css: "",
-                                    name: "edit",
-                                    title: "Edit |"
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                attrs: { href: "#" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.executeForm(index)
-                                  }
-                                }
-                              },
-                              [_vm._v("Delete")]
-                            )
-                          ],
-                          1
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    !_vm.token
-                      ? _c(
-                          "span",
-                          [
-                            _vm.view && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.view } }, [
-                                  _vm._v("View |")
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.view && _vm.modal
-                              ? _c("modal-link", {
-                                  attrs: {
-                                    item: item,
-                                    type: "link",
-                                    css: "",
-                                    name: "view",
-                                    title: "View |"
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.edit && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.edit } }, [
-                                  _vm._v("Edit |")
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.edit && _vm.modal
-                              ? _c("modal-link", {
-                                  attrs: {
-                                    type: "link",
-                                    css: "",
-                                    name: "edit",
-                                    title: "Edit |"
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.dell
-                              ? _c("a", { attrs: { href: _vm.dell } }, [
-                                  _vm._v("Delete")
-                                ])
-                              : _vm._e()
-                          ],
-                          1
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.token && !_vm.dell
-                      ? _c(
-                          "span",
-                          [
-                            _vm.view && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.view } }, [
-                                  _vm._v("View |")
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.view && _vm.modal
-                              ? _c("modal-link", {
-                                  attrs: {
-                                    item: item,
-                                    type: "link",
-                                    css: "",
-                                    name: "view",
-                                    title: "View |"
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.edit && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.edit } }, [
-                                  _vm._v("Edit")
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.edit && _vm.modal
-                              ? _c("modal-link", {
-                                  attrs: {
-                                    type: "link",
-                                    css: "",
-                                    name: "edit",
-                                    title: "Edit"
-                                  }
-                                })
-                              : _vm._e()
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ])
+                ? _c("th", [_vm._v("Action")])
                 : _vm._e()
             ],
             2
           )
-        })
-      )
+        ]),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.list, function(item, index) {
+            return _c(
+              "tr",
+              [
+                _vm._l(item, function(i) {
+                  return _c("td", [_vm._v(_vm._s(i))])
+                }),
+                _vm._v(" "),
+                _vm.view || _vm.edit || _vm.dell
+                  ? _c("td", [
+                      _vm.dell && _vm.token
+                        ? _c(
+                            "form",
+                            { attrs: { id: index, action: _vm.dell } },
+                            [
+                              _c("input", {
+                                attrs: {
+                                  type: "hidden",
+                                  name: "_method",
+                                  value: "DELETE"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: { type: "hidden", name: "_token" },
+                                domProps: { value: _vm.token }
+                              }),
+                              _vm._v(" "),
+                              _vm.view && !_vm.modal
+                                ? _c("a", { attrs: { href: _vm.view } }, [
+                                    _vm._v("View |")
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.view && _vm.modal
+                                ? _c("modal-link", {
+                                    attrs: {
+                                      item: item,
+                                      type: "link",
+                                      css: "",
+                                      name: "view",
+                                      title: "View |"
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.edit && !_vm.modal
+                                ? _c("a", { attrs: { href: _vm.edit } }, [
+                                    _vm._v("Edit |")
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.edit && _vm.modal
+                                ? _c("modal-link", {
+                                    attrs: {
+                                      item: item,
+                                      type: "link",
+                                      css: "",
+                                      name: "edit",
+                                      title: "Edit |"
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.executeForm(index)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Delete")]
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.token
+                        ? _c(
+                            "span",
+                            [
+                              _vm.view && !_vm.modal
+                                ? _c("a", { attrs: { href: _vm.view } }, [
+                                    _vm._v("View |")
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.view && _vm.modal
+                                ? _c("modal-link", {
+                                    attrs: {
+                                      item: item,
+                                      type: "link",
+                                      css: "",
+                                      name: "view",
+                                      title: "View |"
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.edit && !_vm.modal
+                                ? _c("a", { attrs: { href: _vm.edit } }, [
+                                    _vm._v("Edit |")
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.edit && _vm.modal
+                                ? _c("modal-link", {
+                                    attrs: {
+                                      type: "link",
+                                      css: "",
+                                      name: "edit",
+                                      title: "Edit |"
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.dell
+                                ? _c("a", { attrs: { href: _vm.dell } }, [
+                                    _vm._v("Delete")
+                                  ])
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.token && !_vm.dell
+                        ? _c(
+                            "span",
+                            [
+                              _vm.view && !_vm.modal
+                                ? _c("a", { attrs: { href: _vm.view } }, [
+                                    _vm._v("View |")
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.view && _vm.modal
+                                ? _c("modal-link", {
+                                    attrs: {
+                                      item: item,
+                                      type: "link",
+                                      css: "",
+                                      name: "view",
+                                      title: "View |"
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.edit && !_vm.modal
+                                ? _c("a", { attrs: { href: _vm.edit } }, [
+                                    _vm._v("Edit")
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.edit && _vm.modal
+                                ? _c("modal-link", {
+                                    attrs: {
+                                      type: "link",
+                                      css: "",
+                                      name: "edit",
+                                      title: "Edit"
+                                    }
+                                  })
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        : _vm._e()
+                    ])
+                  : _vm._e()
+              ],
+              2
+            )
+          })
+        )
+      ])
     ])
   ])
 }
@@ -44796,10 +44800,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['name', 'header']
-
+    props: ['name', 'title']
 });
 
 /***/ }),
@@ -44814,41 +44821,40 @@ var render = function() {
     "div",
     {
       staticClass: "modal fade",
-      attrs: {
-        id: _vm.name,
-        tabindex: "-1",
-        role: "dialog",
-        "aria-labelledby": _vm.name
-      }
+      attrs: { id: _vm.name, tabindex: "-1", role: "dialog" }
     },
     [
-      _c(
-        "div",
-        { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
-        [
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("h4", { staticClass: "modal-title" }, [
+              _vm._v(_vm._s(_vm.title))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [_vm._t("default")], 2),
+          _vm._v(" "),
           _c(
             "div",
-            { staticClass: "modal-content" },
+            { staticClass: "modal-footer" },
             [
-              _c("div", { staticClass: "modal-header" }, [
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "h4",
-                  {
-                    staticClass: "modal-title",
-                    attrs: { id: "myLargeModalLabel" }
-                  },
-                  [_vm._v(_vm._s(_vm.header))]
-                )
-              ]),
+              _vm._t("buttons"),
               _vm._v(" "),
-              _vm._t("default")
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-default",
+                  attrs: { type: "button", "data-dismiss": "modal" }
+                },
+                [_vm._v("Close")]
+              )
             ],
             2
           )
-        ]
-      )
+        ])
+      ])
     ]
   )
 }

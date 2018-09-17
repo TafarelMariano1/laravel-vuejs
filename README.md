@@ -26,6 +26,11 @@ Create controller
 php artisan make:controller Admin/NameController --resource
 ```
 
+## Install Vuex
+
+```unix
+npm i vuex --save-dev
+```
 
 ## Author
 

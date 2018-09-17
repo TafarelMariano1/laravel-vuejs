@@ -1,7 +1,6 @@
 <template>
     <div>
-        <div class="form-inline">
-           
+        <div class="form-inline">           
             <a v-if="create && !modal" v-bind:href="create">Create</a>
              <modal-link v-if="create && modal"
                type="button"
@@ -14,89 +13,91 @@
                 <input type="search" class="form-control" placeholder="Search" v-model="search">
             </div>  
         </div>
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th style="cursor:pointer" v-on:click="orderColumn(index)" v-for="(title, index) in titles">{{ title }}</th>
-                    <th v-if="view || edit || dell">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(item, index) in list">
-                    <td v-for="i in item">{{ i }}</td>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th style="cursor:pointer" v-on:click="orderColumn(index)" v-for="(title, index) in titles">{{ title }}</th>
+                        <th v-if="view || edit || dell">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in list">
+                        <td v-for="i in item">{{ i }}</td>
 
-                    <td v-if="view || edit || dell">
-                        <form v-bind:id="index" v-if="dell && token" v-bind:action="dell">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" v-bind:value="token">
+                        <td v-if="view || edit || dell">
+                            <form v-bind:id="index" v-if="dell && token" v-bind:action="dell">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" v-bind:value="token">
 
-                            <a v-if="view && !modal" v-bind:href="view">View |</a>
-                             <modal-link v-if="view && modal"
-                                v-bind:item="item"
-                                type="link"
-                                css=""
-                                name="view"
-                                title="View |" 
-                            >
-                            </modal-link>
+                                <a v-if="view && !modal" v-bind:href="view">View |</a>
+                                <modal-link v-if="view && modal"
+                                    v-bind:item="item"
+                                    type="link"
+                                    css=""
+                                    name="view"
+                                    title="View |" 
+                                >
+                                </modal-link>
 
-                            <a v-if="edit && !modal" v-bind:href="edit">Edit |</a>
-                            <modal-link v-if="edit && modal"
-                                v-bind:item="item"
-                                type="link"
-                                css=""
-                                name="edit"
-                                title="Edit |" 
-                            >
-                            </modal-link>     
+                                <a v-if="edit && !modal" v-bind:href="edit">Edit |</a>
+                                <modal-link v-if="edit && modal"
+                                    v-bind:item="item"
+                                    type="link"
+                                    css=""
+                                    name="edit"
+                                    title="Edit |" 
+                                >
+                                </modal-link>     
 
-                            <a href="#" v-on:click="executeForm(index)">Delete</a>
-                        </form>
-                        <span v-if="!token">
-                             <a v-if="view && !modal" v-bind:href="view">View |</a>
-                             <modal-link v-if="view && modal"
-                                v-bind:item="item"
-                                type="link"
-                                css=""
-                                name="view"
-                                title="View |" 
-                            >
-                            </modal-link>
+                                <a href="#" v-on:click="executeForm(index)">Delete</a>
+                            </form>
+                            <span v-if="!token">
+                                <a v-if="view && !modal" v-bind:href="view">View |</a>
+                                <modal-link v-if="view && modal"
+                                    v-bind:item="item"
+                                    type="link"
+                                    css=""
+                                    name="view"
+                                    title="View |" 
+                                >
+                                </modal-link>
 
-                            <a v-if="edit && !modal" v-bind:href="edit">Edit |</a>
-                            <modal-link v-if="edit && modal"
-                                type="link"
-                                css=""
-                                name="edit"
-                                title="Edit |" 
-                            >
-                            </modal-link>
+                                <a v-if="edit && !modal" v-bind:href="edit">Edit |</a>
+                                <modal-link v-if="edit && modal"
+                                    type="link"
+                                    css=""
+                                    name="edit"
+                                    title="Edit |" 
+                                >
+                                </modal-link>
 
-                            <a v-if="dell" v-bind:href="dell">Delete</a>
-                        </span>
-                        <span v-if="token && !dell">
-                            <a v-if="view && !modal" v-bind:href="view">View |</a>
-                            <modal-link v-if="view && modal"
-                                v-bind:item="item"
-                                type="link"
-                                css=""
-                                name="view"
-                                title="View |" 
-                            >
-                            </modal-link>
-                            <a v-if="edit && !modal" v-bind:href="edit">Edit</a>
-                            <modal-link v-if="edit && modal"
-                                type="link"
-                                css=""
-                                name="edit"
-                                title="Edit" 
-                            >
-                            </modal-link>    
-                        </span>                        
-                    </td>
-                </tr>                
-            </tbody>
-        </table>
+                                <a v-if="dell" v-bind:href="dell">Delete</a>
+                            </span>
+                            <span v-if="token && !dell">
+                                <a v-if="view && !modal" v-bind:href="view">View |</a>
+                                <modal-link v-if="view && modal"
+                                    v-bind:item="item"
+                                    type="link"
+                                    css=""
+                                    name="view"
+                                    title="View |" 
+                                >
+                                </modal-link>
+                                <a v-if="edit && !modal" v-bind:href="edit">Edit</a>
+                                <modal-link v-if="edit && modal"
+                                    type="link"
+                                    css=""
+                                    name="edit"
+                                    title="Edit" 
+                                >
+                                </modal-link>    
+                            </span>                        
+                        </td>
+                    </tr>                
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 
@@ -161,6 +162,7 @@
 
                 if (this.search) {
                     return this.itens.filter(res => {
+                        res = Object.values(res);
                         let k = 0;
                         for(k; k < res.length; k++) {
                             if ((res[k] + "").toLowerCase().indexOf(this.search.toLowerCase()) >= 0) return true;
