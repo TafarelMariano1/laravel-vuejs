@@ -2,6 +2,19 @@
 
 @section('content')
     <page size="12">
+
+        @if($errors->all())
+            <div class="alert alert-danger alert-dismissible text-center" role="alert">                        
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                @foreach ($errors->all() as $item)                    
+                    <strong>{{ $item }}</strong>
+                <br>
+            @endforeach   
+            </div>
+        @endif
+
         <panel title="List of Articles">
             <bread-crumbs v-bind:list="{{ $listCrumbs }}"></bread-crumbs>        
             <table-list
@@ -30,19 +43,19 @@
         >
             <div class="form-group">
                 <label for="">Title</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="{{ old('title') }}">
             </div>
             <div class="form-group">
                 <label for="">Description</label>
-                <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+                <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="{{ old('description') }}">
             </div>
             <div class="form-group">
                 <label for="">Content</label>
-                <textarea id="content" class="form-control" id="content" name="content"></textarea>
+                <textarea id="content" class="form-control" id="content" name="content">{{ old('content') }}</textarea>
             </div>
             <div class="form-group">
                 <label for="">Date</label>
-                <input type="date" class="form-control" id="date" name="date">
+                <input type="date" class="form-control" id="date" name="date" value="{{ old('date') }}">
             </div>
         </formulary>
         <span slot="buttons">
@@ -71,7 +84,7 @@
             <button form="formEdit" class="btn btn-info">Edit</button>                     
         </span>
     </modal>
-    <modal name="view" v-bind:title="$store.state.item.title">        
+    <modal name="dell" v-bind:title="$store.state.item.title">        
         <p>@{{$store.state.item.description}}</p>
     </modal>
 @endsection
