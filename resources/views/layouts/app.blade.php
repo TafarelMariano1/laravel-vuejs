@@ -14,8 +14,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <top title=" {{ config('app.name', 'Laravel') }}" url="{{ url('/') }}">
+    <div id="app" style="display:none">
+        <top title="{{ config('app.name', 'Laravel') }}" url="{{ url('/') }}">
             @guest
                 <li><a href="{{ route('login') }}">Login</a></li>
                 <li><a href="{{ route('register') }}">Register</a></li>

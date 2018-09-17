@@ -14,7 +14,7 @@ Create auth Laravel
 php artisan make:auth
 ```
 
-Migrate tables
+Running migrate
 
 ```unix
 php artisan migrate
@@ -24,6 +24,12 @@ Create controller
 
 ```unix
 php artisan make:controller Admin/NameController --resource
+```
+
+Create model
+
+```unix
+php artisan make:model NameModel -m
 ```
 
 ## Install Vuex

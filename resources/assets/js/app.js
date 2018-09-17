@@ -43,5 +43,9 @@ Vue.component('formulary', require('./components/Form.vue'));
 
 const app = new Vue({
     el: '#app',
-    store
+    store,
+    mounted: function() {
+        console.log("Mounted VueJS");
+        document.getElementById('app').style.display = "block";
+    }
 });
