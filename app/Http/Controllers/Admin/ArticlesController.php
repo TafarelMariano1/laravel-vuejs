@@ -18,7 +18,14 @@ class ArticlesController extends Controller
             ["title" => "Home", "url" => route('home')],
             ["title" => "Articles", "url" => ""],
         ]);
-        return view('admin.articles.index', compact('listCrumbs'));
+
+        $listArticles = json_encode([
+            ["id" => 1, "title" => "PHP7 with Typescript", "description" => "Supertest of typescript...", "author" => "Joellima"],
+            ["id" => 2, "title" => "JavaScript ES7/8", "description" => "VueJS", "author" => "ThomasMiller"],
+            ["id" => 3, "title" => "Django in production", "description" => "Python", "author" => "DuLiver"]
+        ]);
+
+        return view('admin.articles.index', compact('listCrumbs', 'listArticles'));
     }
 
     /**

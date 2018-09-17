@@ -85,25 +85,27 @@
 
                 if (order == 'asc') {
                     this.itens.sort(function(a, b) {
-                        if (a[orderCol] > b[orderCol]) return 1;
-                        if (a[orderCol] < b[orderCol]) return -1;
+                        if (Object.values(a)[orderCol] > Object.values(b)[orderCol]) return 1;
+                        if (Object.values(a)[orderCol] < Object.values(b)) return -1;
                         return 0;
                     });
                 } else {
                     this.itens.sort(function(a, b) {
-                        if (a[orderCol] < b[orderCol]) return 1;
-                        if (a[orderCol] > b[orderCol]) return -1;
+                        if (Object.values(a)[orderCol] < Object.values(b)) return 1;
+                        if (Object.values(a)[orderCol] > Object.values(b)) return -1;
                         return 0;
                     });
                 }               
 
-                return this.itens.filter(res => {
-                    let k = 0;
-                    for(k; k < res.length; k++) {
-                        if ((res[k] + "").toLowerCase().indexOf(this.search.toLowerCase()) >= 0) return true;
-                    }
-                    return false;
-                });
+                if (this.search) {
+                    return this.itens.filter(res => {
+                        let k = 0;
+                        for(k; k < res.length; k++) {
+                            if ((res[k] + "").toLowerCase().indexOf(this.search.toLowerCase()) >= 0) return true;
+                        }
+                        return false;
+                    });                    
+                }
 
                 return this.itens;
             }
