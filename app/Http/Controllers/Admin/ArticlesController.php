@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Article;
 class ArticlesController extends Controller
 {
     /**
@@ -19,11 +20,7 @@ class ArticlesController extends Controller
             ["title" => "Articles", "url" => ""],
         ]);
 
-        $listArticles = json_encode([
-            ["id" => 1, "title" => "PHP7 with Typescript", "description" => "Supertest of typescript...", "author" => "Joellima"],
-            ["id" => 2, "title" => "JavaScript ES7/8", "description" => "VueJS", "author" => "ThomasMiller"],
-            ["id" => 3, "title" => "Django in production", "description" => "Python", "author" => "DuLiver"]
-        ]);
+        $listArticles = json_encode(Article::select('id', 'title', 'description', 'date')->get());
 
         return view('admin.articles.index', compact('listCrumbs', 'listArticles'));
     }
@@ -46,7 +43,11 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $data = $request->all();
+        Article::create($data);
+
+        return redirect()->back();
     }
 
     /**

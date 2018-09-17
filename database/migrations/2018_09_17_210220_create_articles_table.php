@@ -18,7 +18,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->text('content');
-            $table->dateTime('data');
+            $table->dateTime('date');
             $table->timestamps();
             $table->SoftDeletes();
         });
