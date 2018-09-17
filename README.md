@@ -4,6 +4,7 @@ Design created to test Laravel with VueJS.
 
 * Laravel 5.5
 * VueJS 2
+* Vuex
 
 ## Commands Laravel
 
